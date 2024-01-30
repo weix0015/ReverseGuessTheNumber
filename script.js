@@ -56,7 +56,7 @@ function guessHigher() {
 // guess correct
 function correctGuess() {
   gameWon = true;
-  document.getElementById("result").innerText = "Congratulations! You guessed the number!";
+  document.getElementById("result").innerText = "Congratulations! Computer finally guessed the number!";
   disableButtons();
 }
 
