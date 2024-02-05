@@ -38,7 +38,7 @@ function startGame() {
 // guess smaller
 function guessSmall() {
   if (!gameWon) {
-    end = guess;
+    end = guess - 1;
     guess = Math.floor((start + end) / 2);
     displayGuess();
   }
@@ -47,10 +47,7 @@ function guessSmall() {
 // guess higher
 function guessHigher() {
   if (!gameWon) {
-    if (guess === 99) {
-      guess++;
-    }
-    start = guess;
+    start = guess + 1;
     guess = Math.floor((start + end) / 2);
     displayGuess();
   }
