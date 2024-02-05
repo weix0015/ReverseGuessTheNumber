@@ -17,7 +17,7 @@ let max = 100;
 let start = min;
 let end = max;
 
-// random guess
+// guess using binary search
 let guess = Math.floor((start + end) / 2);
 
 // check if game won
