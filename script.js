@@ -12,7 +12,7 @@ window.addEventListener("load", function() {
 });
 
 // number from 1 - 100
-let min = 1;
+let min = 0;
 let max = 100;
 let start = min;
 let end = max;
@@ -22,6 +22,9 @@ let guess = Math.floor((start + end) / 2);
 
 // check if game won
 let gameWon = false;
+
+// remaning options
+let remainingOptions = max - min + 1;
 
 // generate random number after click on start button
 // disable start button after clicking on it / hide start button
@@ -37,10 +40,12 @@ function startGame() {
 
 // guess smaller
 function guessSmall() {
-  if (!gameWon) {
+  if (!gameWon && guess > start) {
     end = guess - 1;
-    guess = Math.floor((start + end) / 2);
+    remainingOptions = end - start + 1;
+    guess = Math.max(start + 1, Math.floor((start + end) / 2));
     displayGuess();
+    checkRemainingOptions();
   }
 }
 
@@ -48,10 +53,23 @@ function guessSmall() {
 function guessHigher() {
   if (!gameWon) {
     start = guess + 1;
+    remainingOptions = end - start + 1;
     guess = Math.floor((start + end) / 2);
     displayGuess();
+    checkRemainingOptions();
   }
 }
+
+// check if only 1 option remaining
+function checkRemainingOptions() {
+  const lastGuess = remainingOptions === 1 ? (guess === min ? min : (guess === max ? max : guess)) : null;
+  
+  if (lastGuess !== null) {
+    document.getElementById("result").innerText = `I'm out of options! The number is: ${lastGuess}`;
+    disableButtons();
+  }
+}
+
 
 // guess correct
 function correctGuess() {
